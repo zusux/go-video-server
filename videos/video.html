@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>视频播放</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+<video id="sound" controls width=600 height=300 src="videos/618"></video>
+
+<script>
+    var src = $("#sound").attr('src')
+    var xhr = new XMLHttpRequest();
+    //配置请求方式、请求地址以及是否同步
+    xhr.open('GET', src, true);
+    xhr.responseType = 'blob';
+    //设置请求结果类型为 <br> blob xhr.responseType = 'blob';
+    //请求成功回调函数
+    xhr.onload = function(e) {
+        if (this.status == 200) {
+            //请求成功
+            //获取 blob 对象
+            var blob = this.response;
+            //获取 blob 对象地址，并把值赋给容器
+            $("#sound").attr("src", URL.createObjectURL(blob));}};
+    xhr.send();
+
+</script>
+
+</body>
+</html>
